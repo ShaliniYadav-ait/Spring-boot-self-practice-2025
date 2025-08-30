@@ -14,19 +14,19 @@ public class EmployeeSecurity {
     public InMemoryUserDetailsManager userDetailsManager(){
         UserDetails john = User.builder()
                 .username("john")
-                .password("john")
+                .password("{noop}john")
                 .roles("EMPLOYEE")
                 .build();
 
         UserDetails mary = User.builder()
                 .username("mary")
-                .password("mary")
+                .password("{noop}mary")
                 .roles("EMPLOYEE","MANAGER")
                 .build();
 
         UserDetails susan = User.builder()
                 .username("susan")
-                .password("susan")
+                .password("{noop}susan")
                 .roles("EMPLOYEE","MANAGER","ADMIN")
                 .build();
 
