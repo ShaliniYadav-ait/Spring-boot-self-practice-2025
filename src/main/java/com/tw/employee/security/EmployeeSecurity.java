@@ -1,0 +1,35 @@
+package com.tw.employee.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+@Configuration
+public class EmployeeSecurity {
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager(){
+        UserDetails john = User.builder()
+                .username("john")
+                .password("john")
+                .roles("EMPLOYEE")
+                .build();
+
+        UserDetails mary = User.builder()
+                .username("mary")
+                .password("mary")
+                .roles("EMPLOYEE","MANAGER")
+                .build();
+
+        UserDetails susan = User.builder()
+                .username("susan")
+                .password("susan")
+                .roles("EMPLOYEE","MANAGER","ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(john,mary,susan);
+    }
+}
