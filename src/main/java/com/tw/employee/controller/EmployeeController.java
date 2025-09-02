@@ -4,10 +4,7 @@ import com.tw.employee.entity.Employee;
 import com.tw.employee.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,14 @@ public class EmployeeController {
     public String showFormForAdd(Model theModel) {
         Employee theEmployee = new Employee();
 
+        theModel.addAttribute("employee", theEmployee);
+        return "employees/employee-form";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("employeeId") int theId, Model theModel) {
+        Employee theEmployee = new Employee();
+        theEmployee = employeeService.findById(theId);
         theModel.addAttribute("employee", theEmployee);
         return "employees/employee-form";
     }
